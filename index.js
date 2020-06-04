@@ -25,11 +25,11 @@ app.get(`/error/404`, function (_req, resp) {
 });
 
 app.get(`/public/js/bootsrap.bundle.min.js`, (_req, res) => {
-    res.sendFile(`./public/js/bootstrap.min.js`, { root: __dirname });
+    res.sendFile(`./public/js/bootstrap.bundle.min.js`, { root: __dirname });
 });
 
 app.get(`/public/js/bootsrap.bundle.min.js.map`, (_req, res) => {
-    res.sendFile(`./public/js/bootstrap.min.js.map`, { root: __dirname });
+    res.sendFile(`./public/js/bootstrap.bundle.min.js.map`, { root: __dirname });
 });
 
 app.get(`/public/js/jquery.min.js`, (_req, res) => {
