@@ -48,6 +48,10 @@ app.get(`/public/css/bootstrap.min.css.map`, (_req, resp) => {
     resp.sendFile(`./public/css/bootstrap.min.css.map`, { root: __dirname });
 });
 
+app.get(`/favicon.ico`, (_req, resp) => {
+    resp.sendFile(`./public/resources/favicon.ico`, { root: __dirname });
+});
+
 app.get(`*`, (_req, resp) => {
     resp.redirect(`/error/404`);
 });
