@@ -24,11 +24,11 @@ app.get(`/error/404`, function (_req, resp) {
     //resp.render(`404`);
 });
 
-app.get(`/public/js/bootsrap.bundle.min.js`, (_req, res) => {
+app.get(`/public/js/bootstrap.bundle.min.js`, (_req, res) => {
     res.sendFile(`./public/js/bootstrap.bundle.min.js`, { root: __dirname });
 });
 
-app.get(`/public/js/bootsrap.bundle.min.js.map`, (_req, res) => {
+app.get(`/public/js/bootstrap.bundle.min.js.map`, (_req, res) => {
     res.sendFile(`./public/js/bootstrap.bundle.min.js.map`, { root: __dirname });
 });
 
