@@ -15,6 +15,10 @@ app.get(`/assetmgt`, (_req, res) => {
     res.render(`assetmgt`);
 });
 
+app.get(`/critsys`, (_req, res) => {
+    res.render(`critsys`);
+});
+
 app.get(`/error/404`, function (_req, resp) {
     resp.send(`404`);
     //resp.render(`404`);
