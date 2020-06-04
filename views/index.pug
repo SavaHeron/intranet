@@ -1,6 +1,8 @@
 doctype html
 head
   title Home - Intranet
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
   link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
   script(type='text/javascript' src='/public/js/jquery.min.js')
   script(type='text/javascript' src='/public/js/bootstrap.bundle.min.js')
@@ -14,11 +16,11 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         a.nav-link(href='#') Home
       li.nav-item.dropdown
         #navbarDropdownMenuLink.nav-link.dropdown-toggle.active(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Asset Management
-          div.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
-            a.dropdown-item(href='/assetmgt') Asset Management Home
-            div.dropdown-divider
-            a.dropdown-item(href='/assetmgt/assets') Assets
-            a.dropdown-item(href='/assetmgt/editor') Asset Editor
+        div.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+          a.dropdown-item(href='/assetmgt') Asset Management Home
+          div.dropdown-divider
+          a.dropdown-item(href='/assetmgt/assets') All Assets
+          a.dropdown-item(href='/assetmgt/editor') Asset Editor
       li.nav-item
         a.nav-link(href='/critsys') Critical Systems
     ul.navbar-nav.float-right
