@@ -36,8 +36,7 @@ app.get(`/critsys`, (_req, res) => {
 });
 
 app.get(`/error/404`, function (_req, res) {
-    res.send(`404`);
-    //res.render(`404`);
+    res.render(`404`);
 });
 
 app.get(`/public/js/bootstrap.bundle.min.js`, (_req, res) => {
@@ -62,6 +61,10 @@ app.get(`/public/css/bootstrap.min.css`, (_req, res) => {
 
 app.get(`/public/css/bootstrap.min.css.map`, (_req, res) => {
     res.sendFile(`./public/css/bootstrap.min.css.map`, { root: __dirname });
+});
+
+app.get(`/public/css/error.map.css`, (_req, res) => {
+    res.sendFile(`./public/css/error.css`, { root: __dirname });
 });
 
 app.get(`/favicon.ico`, (_req, res) => {
