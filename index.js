@@ -63,7 +63,11 @@ app.get(`/public/css/bootstrap.min.css.map`, (_req, res) => {
     res.sendFile(`./public/css/bootstrap.min.css.map`, { root: __dirname });
 });
 
-app.get(`/public/css/error.map.css`, (_req, res) => {
+app.get(`/public/css/error.css`, (_req, res) => {
+    res.sendFile(`./public/css/error.css`, { root: __dirname });
+});
+
+app.get(`/public/css/main.css`, (_req, res) => {
     res.sendFile(`./public/css/error.css`, { root: __dirname });
 });
 

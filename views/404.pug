@@ -3,6 +3,7 @@ head
   title Error 404 - Intranet
   link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
   link(rel='stylesheet' type='text/css' href='/public/css/error.css')
+  link(rel='stylesheet' type='text/css' href='/public/css/main.css')
   script(type='text/javascript' src='/public/js/jquery.min.js')
   script(type='text/javascript' src='/public/js/bootstrap.bundle.min.js')
 nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
@@ -15,7 +16,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         a.nav-link(href='/') Home
       li.nav-item.dropdown
         #navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Asset Management
-        div.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+        div.dropdown-menu.animated--grow-in(aria-labelledby='navbarDropdownMenuLink')
           a.dropdown-item(href='/assetmgt') Asset Management Dashboard
           div.dropdown-divider
           a.dropdown-item(href='/assetmgt/assets') All Assets
