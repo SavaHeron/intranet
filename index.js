@@ -15,6 +15,22 @@ app.get(`/assetmgt`, (_req, res) => {
     res.render(`assetmgt`);
 });
 
+app.get(`/assetmgt/assets`, (_req, res) => {
+    res.render(`assets`);
+});
+
+app.get(`/assetmgt/locations`, (_req, res) => {
+    res.render(`locations`);
+});
+
+app.get(`/assetmgt/asseteditor`, (_req, res) => {
+    res.render(`asseteditor`);
+});
+
+app.get(`/assetmgt/locationeditor`, (_req, res) => {
+    res.render(`locationeditor`);
+});
+
 app.get(`/critsys`, (_req, res) => {
     res.render(`critsys`);
 });

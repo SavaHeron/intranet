@@ -1,6 +1,6 @@
 doctype html
 head
-  title Asset Management - Intranet
+  title Location Editor - Intranet
   link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
   script(type='text/javascript' src='/public/js/jquery.min.js')
   script(type='text/javascript' src='/public/js/bootstrap.bundle.min.js')
@@ -15,12 +15,12 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       li.nav-item.dropdown
         #navbarDropdownMenuLink.nav-link.dropdown-toggle.active(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Asset Management
         div.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
-          a.dropdown-item(href='#') Asset Management Dashboard
+          a.dropdown-item(href='/assetmgt') Asset Management Dashboard
           div.dropdown-divider
           a.dropdown-item(href='/assetmgt/assets') All Assets
-          a.dropdown-item(href='/assetmgt/locations') All Locations
+          a.dropdown-item(href='/assetmgt/locations') Locations
           a.dropdown-item(href='/assetmgt/asseteditor') Asset Editor
-          a.dropdown-item(href='/assetmgt/locationeditor') Location Editor
+          a.dropdown-item(href='#') Location Editor
       li.nav-item
         a.nav-link(href='/critsys') Critical Systems
     ul.navbar-nav.float-right
