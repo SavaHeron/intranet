@@ -68,7 +68,7 @@ app.get(`/public/css/error.css`, (_req, res) => {
 });
 
 app.get(`/public/css/main.css`, (_req, res) => {
-    res.sendFile(`./public/css/error.css`, { root: __dirname });
+    res.sendFile(`./public/css/main.css`, { root: __dirname });
 });
 
 app.get(`/favicon.ico`, (_req, res) => {

@@ -4,7 +4,7 @@
   position: relative;
   line-height: 1;
   width: 12.5rem;
-  padding-top: 25rem;
+  padding-top: 10rem;
 }
 
 @keyframes noise-anim {
@@ -84,6 +84,7 @@
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
   animation: noise-anim 2s infinite linear alternate-reverse;
+  padding-top: 10rem;
 }
 
 @keyframes noise-anim-2 {
@@ -163,4 +164,5 @@
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
   animation: noise-anim-2 3s infinite linear alternate-reverse;
+  padding-top: 10rem;
 }
