@@ -76,6 +76,7 @@ app.get(`/favicon.ico`, (_req, res) => {
 });
 
 app.get(`/assetmgt/*`, (_req, res) => {
+    console.log(res);
     res.render(`asset`, {ID: "gsb1", contents: "stuff"});
 });
 
