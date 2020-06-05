@@ -1,0 +1,36 @@
+doctype html
+head
+  title Home - Intranet
+  link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
+  script(type='text/javascript' src='/public/js/jquery.min.js')
+  script(type='text/javascript' src='/public/js/bootstrap.bundle.min.js')
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  a.navbar-brand(href='#') intranet.heron-green.co.uk
+  button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation")
+    span.navbar-toggler-icon
+  #navbarContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item
+        a.nav-link(href='/') Home
+      li.nav-item.dropdown
+        #navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Asset Management
+        div.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+          a.dropdown-item(href='/assetmgt') Asset Management Dashboard
+          div.dropdown-divider
+          a.dropdown-item(href='/assetmgt/assets') All Assets
+          a.dropdown-item(href='/assetmgt/locations') All Locations
+          a.dropdown-item(href='/assetmgt/asseteditor') Asset Editor
+          a.dropdown-item(href='/assetmgt/locationeditor') Location Editor
+      li.nav-item
+        a.nav-link(href='/critsys') Critical Systems
+    ul.navbar-nav.float-right
+      li.nav-item
+        a.nav-link(href='/login') Login
+body
+  .container-fluid
+    .text-center
+      .error.mx-auto(data-text='404') 404
+      p.lead.text-gray-800.mb-5 Page Not Found
+      p.text-gray-500.mb-0 It looks like you found a glitch in the matrix...
+      a(href='index.html') &larr; Back to Dashboard
+
