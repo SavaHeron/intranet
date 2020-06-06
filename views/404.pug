@@ -16,7 +16,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         a.nav-link(href='/') Home
       li.nav-item.dropdown
         #navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Asset Management
-        div.dropdown-menu.animated--grow-in(aria-labelledby='navbarDropdownMenuLink')
+        div.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
           a.dropdown-item(href='/assetmgt') Asset Management Dashboard
           div.dropdown-divider
           a.dropdown-item(href='/assetmgt/assets') All Assets
@@ -35,6 +35,6 @@ body
       p.lead.text-gray-800.mb-5 Page Not Found
       p.text-gray-500.mb-0 It looks like you found a glitch in the matrix...
       a(href='/') &larr; Back to Home
-  footer.footer
+  .footer.footer
     .container
       span.text-muted Copyright © intranet.heron-green.co.uk 2020
