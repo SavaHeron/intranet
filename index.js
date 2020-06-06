@@ -18,7 +18,7 @@ async function getasset(ID) {
         let connection = await pool.getConnection();
         let rows = await connection.query(`SELECT * FROM assets WHERE ID LIKE "${ID}"`);
         connection.end();
-        console.log(rows);
+        console.log(rows[0]);
         return rows[0];
     } catch (error) {
         fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
@@ -104,7 +104,8 @@ app.get(`/favicon.ico`, (_req, res) => {
 
 app.get(`/assetmgt/*`, (req, res) => {
     let ID = req.originalUrl.split(`/`)[2];
-    if (typeof getasset(ID) != `undefined`) {
+    let result = await getasset(ID);
+    if (typeof result != `undefined`) {
         res.render(`asset`, { ID: ID, contents: "stuff" });
     } else {
         app.redirect(`/error/404`);
