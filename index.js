@@ -1,7 +1,33 @@
 const express = require(`express`);
+const mariadb = require(`mariadb`);
+const fs = require(`fs`);
 const http = require(`http`);
 const app = express();
 const port = 3000;
+
+const pool = mariadb.createPool({
+    host: `localhost`,
+    user: `root`,
+    password: ``,
+    connectionLimit: 5,
+    database: `intranet`
+});
+
+async function getasset(ID) {
+    try {
+        let connection = await pool.getConnection();
+        let rows = await connection.query(`SELECT * FROM assets WHERE attribute LIKE ${ID}`);
+        connection.end();
+        return rows[0];
+    } catch (error) {
+        fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
+            if (error) {
+                return console.error(error);
+            };
+        });
+        return console.error(error);
+    };
+};
 
 app.set(`views`, `./views`);
 app.set(`view engine`, `pug`);
@@ -77,7 +103,11 @@ app.get(`/favicon.ico`, (_req, res) => {
 
 app.get(`/assetmgt/*`, (req, res) => {
     let ID = req.originalUrl.split(`/`)[2];
-    res.render(`asset`, {ID: ID, contents: "stuff"});
+    if (typeof getasset(ID) != `undefined`) {
+        res.render(`asset`, { ID: ID, contents: "stuff" });
+    } else {
+        app.redirect(`/error/404`);
+    };
 });
 
 app.get(`*`, (_req, res) => {
