@@ -108,7 +108,7 @@ app.get(`/assetmgt/*`, async function (req, res) {
     if (typeof result != `undefined`) {
         res.render(`asset`, { ID: ID, contents: "stuff" });
     } else {
-        app.redirect(`/error/404`);
+        res.redirect(`/error/404`);
     };
 });
 
