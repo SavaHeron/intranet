@@ -102,7 +102,7 @@ app.get(`/favicon.ico`, (_req, res) => {
     res.sendFile(`./public/resources/favicon.ico`, { root: __dirname });
 });
 
-app.get(`/assetmgt/*`, (req, res) => {
+app.get(`/assetmgt/*`, async function (req, res) {
     let ID = req.originalUrl.split(`/`)[2];
     let result = await getasset(ID);
     if (typeof result != `undefined`) {
