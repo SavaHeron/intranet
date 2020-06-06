@@ -75,8 +75,8 @@ app.get(`/favicon.ico`, (_req, res) => {
     res.sendFile(`./public/resources/favicon.ico`, { root: __dirname });
 });
 
-app.get(`/assetmgt/*`, (_req, res) => {
-    console.log(res);
+app.get(`/assetmgt/*`, (req, res) => {
+    console.log(req.originalUrl);
     res.render(`asset`, {ID: "gsb1", contents: "stuff"});
 });
 
