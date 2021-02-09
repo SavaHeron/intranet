@@ -3,6 +3,8 @@ const mariadb = require(`mariadb`);
 const fs = require(`fs`);
 const http = require(`http`);
 const crypto = require(`crypto`);
+const cookieParser = require(`cookie-parser`);
+const bodyParser = require(`body-parser`);
 const app = express();
 const port = 3000;
 
@@ -64,6 +66,9 @@ async function setSessionID(username) {
 app.set(`views`, `./views`);
 app.set(`view engine`, `pug`);
 app.use(express.static(__dirname + `public`));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.get(`/`, (_req, res) => {
     res.render(`index`);
