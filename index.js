@@ -178,7 +178,7 @@ app.post(`/login`, async function (req, resp) {
                 setSessionID(sessionID);
                 resp.redirect(`/`);
             } else {
-                return resp.redirect(`/401`);
+                return resp.redirect(`/error/401`);
             };
         };
     });
