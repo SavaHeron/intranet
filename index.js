@@ -96,6 +96,10 @@ app.get(`/error/404`, (_req, res) => {
     res.render(`404`);
 });
 
+app.get(`/error/401`, (_req, res) => {
+    res.render(`401`);
+});
+
 app.get(`/login`, (_req, res) => {
     res.render(`login`);
 });
