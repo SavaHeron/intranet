@@ -1,5 +1,6 @@
 * {
     font-family: Arial;
+    background: #5a5c69;
 }
 
 html {
@@ -33,11 +34,11 @@ body {
 }
 
 .form-group {
-  background-color: #36393E;
+  background-color: #5a5c69;
 }
 
 form {
-  background-color: #36393E;
+  background-color: #5a5c69;
   padding-top: 25px;
   margin: 0 auto;
   width:250px;
