@@ -2,6 +2,7 @@ const express = require(`express`);
 const mariadb = require(`mariadb`);
 const fs = require(`fs`);
 const http = require(`http`);
+const crypto = require(`crypto`);
 const app = express();
 const port = 3000;
 
