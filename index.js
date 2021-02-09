@@ -158,6 +158,7 @@ app.get(`/assetmgt/*`, async function (req, res) {
 });
 
 app.post(`/login`, async function (req, resp) {
+    console.log(req.body);
     let username = req.body.username;
     let password = req.body.password;
     crypto.pbkdf2(password, `putsalthere`, 100000, 64, `sha512`, async function (error, derivedKey) {
@@ -171,7 +172,7 @@ app.post(`/login`, async function (req, resp) {
         } else {
             let hashedPassword = derivedKey.toString(`hex`);
             let result = await getuser(username, hashedPassword);
-            if (result.length == 1) {
+            if (typeof result != `undefined`) {
                 let sessionID = crypto.randomBytes(64).toString(`hex`);
                 resp.cookie(`sessionID`, sessionID, { expires: new Date(Date.now() + 1800000) });
                 setSessionID(sessionID);
