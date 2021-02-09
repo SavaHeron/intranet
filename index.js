@@ -150,7 +150,7 @@ app.get(`/assetmgt/*`, async function (req, res) {
 app.post(`/login`, async function (req, resp) {
     let username = req.body.username;
     let password = req.body.password;
-    crypto.pbkdf2(password, `zokowrAprIxuhlswUKU6oMAqiho0ichoge4obRaCuT3xachudrehufRAwreprlFe`, 100000, 64, `sha512`, async function (error, derivedKey) {
+    crypto.pbkdf2(password, `putsalthere`, 100000, 64, `sha512`, async function (error, derivedKey) {
         if (error) {
             fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
                 if (error) {
@@ -166,7 +166,11 @@ app.post(`/login`, async function (req, resp) {
                 resp.cookie(`sessionID`, sessionID, { expires: new Date(Date.now() + 1800000) });
                 setSessionID(sessionID);
                 resp.redirect(`/`);
+            } else {
+                return resp.redirect(`/401`);
             };
+        };
+    });
 });
 
 app.get(`*`, (_req, res) => {
