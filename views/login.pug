@@ -1,6 +1,6 @@
 doctype html
 head
-  title Error 404 - Intranet
+  title Login - Intranet
   link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
   link(rel='stylesheet' type='text/css' href='/public/css/main.css')
   script(type='text/javascript' src='/public/js/jquery.min.js')
@@ -24,11 +24,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           a.dropdown-item(href='/assetmgt/locationeditor') Location Editor
       li.nav-item
         a.nav-link(href='/critsys') Critical Systems
-    ul.navbar-nav.float-right
-      li.nav-item.disabled
-        a.nav-link(href='#') Logout
 .form-group
-  form.login-form.text-center(action=`/` method=`POST`)
+  form.login-form.text-center(action=`/login` method=`POST`)
     input.form-control(type=`text` name=`username` placeholder=`Username`)
     br
     input.form-control(type=`password` name=`password` placeholder=`Password`)
