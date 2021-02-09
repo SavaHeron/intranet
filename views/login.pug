@@ -1,0 +1,41 @@
+doctype html
+head
+  title Error 404 - Intranet
+  link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
+  link(rel='stylesheet' type='text/css' href='/public/css/main.css')
+  script(type='text/javascript' src='/public/js/jquery.min.js')
+  script(type='text/javascript' src='/public/js/bootstrap.bundle.min.js')
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  a.navbar-brand(href='#') intranet.heron-green.co.uk
+  button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation")
+    span.navbar-toggler-icon
+  #navbarContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item
+        a.nav-link(href='/') Home
+      li.nav-item.dropdown
+        #navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Asset Management
+        div.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+          a.dropdown-item(href='/assetmgt') Asset Management Dashboard
+          div.dropdown-divider
+          a.dropdown-item(href='/assetmgt/assets') All Assets
+          a.dropdown-item(href='/assetmgt/locations') All Locations
+          a.dropdown-item(href='/assetmgt/asseteditor') Asset Editor
+          a.dropdown-item(href='/assetmgt/locationeditor') Location Editor
+      li.nav-item
+        a.nav-link(href='/critsys') Critical Systems
+    ul.navbar-nav.float-right
+      li.nav-item.disabled
+        a.nav-link(href='#') Logout
+.form-group
+  form.login-form.text-center(action=`/` method=`POST`)
+    input.form-control(type=`text` name=`username` placeholder=`Username`)
+    br
+    input.form-control(type=`password` name=`password` placeholder=`Password`)
+    br
+    button#load.btn.btn-primary(type=`submit` data-loading-text="<i class=`fa fa-spinner fa-spin `></i> Logging in") Login
+script.
+  $(`.btn`).on(`click`, function() {
+  var $this = $(this);
+  $this.button(`loading`);
+  });

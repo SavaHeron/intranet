@@ -32,6 +32,17 @@ body {
   width: 12.5rem;
 }
 
+.form-group {
+  background-color: #36393E;
+}
+
+form {
+  background-color: #36393E;
+  padding-top: 25px;
+  margin: 0 auto;
+  width:250px;
+}
+
 @keyframes noise-anim {
   0% {
     clip: rect(32px, 9999px, 16px, 0);

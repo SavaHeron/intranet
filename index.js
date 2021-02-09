@@ -29,6 +29,37 @@ async function getasset(ID) {
     };
 };
 
+async function getuser(username, password) {
+    try {
+        let connection = await pool.getConnection();
+        let rows = await connection.query(`SELECT * FROM users WHERE username LIKE "${username}" AND password LIKE "${password}"`);
+        connection.end();
+        return rows[0];
+    } catch (error) {
+        fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
+            if (error) {
+                return console.error(error);
+            };
+        });
+        return console.error(error);
+    };
+};
+
+async function setSessionID(username) {
+    try {
+        let connection = await pool.getConnection();
+        let rows = await connection.query(`UPDATE users SET sessionID = "${sessionID}" WHERE username = "${username}"`);
+        connection.end();
+    } catch (error) {
+        fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
+            if (error) {
+                return console.error(error);
+            };
+        });
+        return console.error(error);
+    };
+};
+
 app.set(`views`, `./views`);
 app.set(`view engine`, `pug`);
 app.use(express.static(__dirname + `public`));
@@ -61,8 +92,12 @@ app.get(`/critsys`, (_req, res) => {
     res.render(`critsys`);
 });
 
-app.get(`/error/404`, function (_req, res) {
+app.get(`/error/404`, (_req, res) => {
     res.render(`404`);
+});
+
+app.get(`/login`, (_req, res) => {
+    res.render(`login`);
 });
 
 app.get(`/public/js/bootstrap.bundle.min.js`, (_req, res) => {
@@ -110,6 +145,28 @@ app.get(`/assetmgt/*`, async function (req, res) {
     } else {
         res.redirect(`/error/404`);
     };
+});
+
+app.post(`/login`, async function (req, resp) {
+    let username = req.body.username;
+    let password = req.body.password;
+    crypto.pbkdf2(password, `zokowrAprIxuhlswUKU6oMAqiho0ichoge4obRaCuT3xachudrehufRAwreprlFe`, 100000, 64, `sha512`, async function (error, derivedKey) {
+        if (error) {
+            fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
+                if (error) {
+                    return console.error(error);
+                };
+            });
+            return console.error(error);
+        } else {
+            let hashedPassword = derivedKey.toString(`hex`);
+            let result = await getuser(username, hashedPassword);
+            if (result.length == 1) {
+                let sessionID = crypto.randomBytes(64).toString(`hex`);
+                resp.cookie(`sessionID`, sessionID, { expires: new Date(Date.now() + 1800000) });
+                setSessionID(sessionID);
+                resp.redirect(`/`);
+            };
 });
 
 app.get(`*`, (_req, res) => {
