@@ -39,6 +39,7 @@ async function getassets() {
         let connection = await pool.getConnection();
         let rows = await connection.query(`SELECT * FROM assets`);
         connection.end();
+        console.log(rows);
         return rows.slice(rows.length-1);
     } catch (error) {
         fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
