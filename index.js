@@ -92,11 +92,10 @@ app.use(session({
 }))
 
 app.get(`/`, async function (req, resp) {
-    console.log(req.session);
-    let cookieSessionID = req.cookies.sessionID;
+    let cookieSessionID = req.session.cookies.sessionID;
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
-        if (result.length == 1) {
+        if (typeof result != `undefined`) {
             return resp.render(`index`);
         } else {
             return resp.render(`login`);
