@@ -53,7 +53,7 @@ async function getuser(username, password) {
 async function setSessionID(username, sessionID) {
     try {
         let connection = await pool.getConnection();
-        let rows = await connection.query(`UPDATE users SET sessionID = "${sessionID}" WHERE username = "${username}"`);
+        await connection.query(`UPDATE users SET sessionID = "${sessionID}" WHERE username = "${username}"`);
         connection.end();
     } catch (error) {
         fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
