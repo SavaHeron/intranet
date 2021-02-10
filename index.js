@@ -137,7 +137,7 @@ app.get(`/error/401`, (_req, res) => {
     res.render(`401`);
 });
 
-app.get(`/login`, async function (_req, res) {
+app.get(`/login`, async function (req, res) {
     let cookieSessionID = req.cookies.sessionID;
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
