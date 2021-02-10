@@ -229,7 +229,6 @@ app.get(`/assetmgt/*`, async function (req, res) {
 
 app.post(`/login`, async function (req, res) {
     let username = (req.body.username).toLowerCase();
-    console.log(username);
     let password = req.body.password;
     crypto.pbkdf2(password, passwords.salt, 100000, 64, `sha512`, async function (error, derivedKey) {
         if (error) {
