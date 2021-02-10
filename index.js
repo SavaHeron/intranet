@@ -202,7 +202,7 @@ app.post(`/`, async function (req, resp) {
             let result = await getuser(username, hashedPassword);
             if (typeof result != `undefined`) {
                 let sessionID = crypto.randomBytes(64).toString(`hex`);
-                resp.cookie(`sessionID`, sessionID, { expires: new Date(Date.now() + 1800000) });
+                resp.cookie(`sessionID`, sessionID, { expires: new Date(Date.now() + 1800000), secure: true, signed: true });
                 setSessionID(username, sessionID);
                 resp.render(`index`);
             } else {
