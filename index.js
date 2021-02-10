@@ -147,7 +147,7 @@ app.get(`/login`, async function (req, res) {
             return res.render(`login`);
         };
     } else {
-        return res.render(`/login`);
+        return res.render(`login`);
     };
 });
 
