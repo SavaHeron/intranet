@@ -66,7 +66,7 @@ async function setSessionID(username, sessionID) {
 async function getSessionID(sessionID) {
     try {
         let connection = await pool.getConnection();
-        let rows = await connection.query(`SELECT * FROM users WHERE sessionID LIKE "${sessionID}"`);
+        let rows = await connection.query(`SELECT * FROM users WHERE SessionID LIKE "${sessionID}"`);
         connection.end();
         return rows[0];
     } catch (error) {
