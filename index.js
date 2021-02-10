@@ -81,6 +81,7 @@ async function getSessionID(sessionID) {
 
 app.set(`views`, `./views`);
 app.set(`view engine`, `pug`);
+app.set('trust proxy', 1)
 app.use(express.static(__dirname + `public`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -203,7 +204,7 @@ app.post(`/`, async function (req, resp) {
                 let sessionID = crypto.randomBytes(64).toString(`hex`);
                 resp.cookie(`sessionID`, sessionID, { expires: new Date(Date.now() + 1800000) });
                 setSessionID(username, sessionID);
-                resp.redirect(`/`);
+                resp.render(`index`);
             } else {
                 return resp.redirect(`/error/401`);
             };
