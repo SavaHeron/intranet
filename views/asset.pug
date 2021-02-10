@@ -26,8 +26,27 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       li.nav-item
         a.nav-link(href='/logout') Logout
 body
-  h1 #{ID}
-  h2 #{contents}
+.container-fluid      
+    table.assettable
+        tr.assettable
+          th.assettabletitle ID
+          th.assettabletitle Title
+          th.assettabletitle Contents
+          th.assettabletitle Location
+          th.assettabletitle Size
+          th.assettabletitle Notes
+          th.assettabletitle
+          tbody.assettable
+            each elem in assets
+              tr.assettable
+                td.assettable #{elem.ID}
+                td.assettable #{elem.Title}
+                td.assettable #{elem.Contents}
+                td.assettable #{elem.Location}
+                td.assettable #{elem.Size}
+                td.assettable #{elem.Notes}
+                td
+                  a.button.btn(class="btn btn-small" type="button" href=`/assetmgt/asseteditor/${elem.ID}`) Edit
   .footer.footer
     .container
       span.text-muted Copyright © intranet.heron-green.co.uk 2021

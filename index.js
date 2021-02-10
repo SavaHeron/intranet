@@ -268,8 +268,7 @@ app.get(`/assetmgt/*`, async function (req, res) {
             let ID = req.originalUrl.split(`/`)[2];
             let result = await getasset(ID);
             if (typeof result != `undefined`) {
-                let contents = result.Contents;
-                res.render(`asset`, { ID: ID, contents: contents });
+                res.render(`asset`, { assets: result });
             } else {
                 res.redirect(`/error/404`);
             };
