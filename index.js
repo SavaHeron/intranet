@@ -109,7 +109,7 @@ app.get(`/`, async function (req, res) {
     };
 });
 
-app.get(`/assetmgt`, (_req, res) => {
+app.get(`/assetmgt`, async function (_req, res) {
     let cookieSessionID = req.cookies.sessionID;
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
