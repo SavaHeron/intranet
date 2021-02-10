@@ -29,21 +29,21 @@ body
 .container-fluid      
     table.assettable
         tr.assettable
-          th ID
-          th Title
-          th Contents
-          th Location
-          th Size
-          th Notes
-          tbody
+          th.assettable ID
+          th.assettable Title
+          th.assettable Contents
+          th.assettable Location
+          th.assettable Size
+          th.assettable Notes
+          tbody.assettable
             each elem in assets
               tr.assettable
-                td #{elem.ID}
-                td #{elem.Title}
-                td #{elem.Contents}
-                td #{elem.Location}
-                td #{elem.Size}
-                td #{elem.Notes}   
+                td.assettable #{elem.ID}
+                td.assettable #{elem.Title}
+                td.assettable #{elem.Contents}
+                td.assettable #{elem.Location}
+                td.assettable #{elem.Size}
+                td.assettable #{elem.Notes}   
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
