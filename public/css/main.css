@@ -24,6 +24,13 @@ body {
   background-color: #343a40;
 }
 
+.table {
+  color: #ffffff;
+  vertical-align: middle;
+  border-top: none;
+  padding: 1rem;
+}
+
 .error-container {
     padding-top: 15px;
 }
