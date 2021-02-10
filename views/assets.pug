@@ -26,9 +26,9 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       li.nav-item
         a.nav-link(href='/logout') Logout
 body
-.container-fluid.tablecontainer            
+.container-fluid      
     table.assettable
-        tr
+        tr.assettable
           th ID
           th Title
           th Contents
@@ -37,7 +37,7 @@ body
           th Notes
           tbody
             each elem in assets
-              tr
+              tr.assettable
                 td #{elem.ID}
                 td #{elem.Title}
                 td #{elem.Contents}
