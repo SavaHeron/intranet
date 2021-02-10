@@ -35,6 +35,7 @@ body
           th.assettabletitle Location
           th.assettabletitle Size
           th.assettabletitle Notes
+          th.assettabletitle Edit
           tbody.assettable
             each elem in assets
               tr.assettable
@@ -43,7 +44,8 @@ body
                 td.assettable #{elem.Contents}
                 td.assettable #{elem.Location}
                 td.assettable #{elem.Size}
-                td.assettable #{elem.Notes}   
+                td.assettable #{elem.Notes}
+                td.assettable(href='/assetmgt/asseteditor/#{elem.ID}') Edit
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
