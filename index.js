@@ -106,7 +106,6 @@ app.get(`/`, async function (req, resp) {
     } else {
         return resp.redirect(`/login`);
     };
-
 });
 
 app.get(`/assetmgt`, (_req, res) => {
@@ -138,7 +137,17 @@ app.get(`/error/401`, (_req, res) => {
 });
 
 app.get(`/login`, (_req, res) => {
-    res.render(`login`);
+    let cookieSessionID = req.cookies.sessionID;
+    if (typeof cookieSessionID != `undefined`) {
+        let result = await getSessionID(cookieSessionID);
+        if (typeof result != `undefined`) {
+            return resp.redirect(`/`);
+        } else {
+            return resp.render(`login`);
+        };
+    } else {
+        return resp.render(`/login`);
+    };
 });
 
 app.get(`/public/js/bootstrap.bundle.min.js`, (_req, res) => {
