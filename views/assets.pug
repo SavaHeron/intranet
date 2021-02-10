@@ -26,17 +26,16 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       li.nav-item
         a.nav-link(href='/logout') Logout
 body
-  main
-  .container              
-      table.table
-          tr
-            th ID
-            th Title
-            th Contents
-            th Location 
-            th Size 
-            th Notes 
-      tbody 
+.container              
+    table
+        tr
+          th ID
+          th Title
+          th Contents
+          th Location 
+          th Size 
+          th Notes 
+      tbody
         each elem in assets
           tr
             td #{elem.ID}
