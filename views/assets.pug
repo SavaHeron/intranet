@@ -36,14 +36,14 @@ body
           th Size 
           th Notes 
     tbody 
-      each record in result
+      each elem,i in result
         tr
-          td #{record.ID}
-          td #{record.Title}
-          td #{record.Contents}
-          td #{record.Location}
-          td #{record.Size}
-          td #{record.Notes}
+          td #{elem.ID}
+          td #{elem.Title}
+          td #{elem.Contents}
+          td #{elem.Location}
+          td #{elem.Size}
+          td #{elem.Notes}
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
