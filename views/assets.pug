@@ -35,7 +35,7 @@ body
           th.assettabletitle Location
           th.assettabletitle Size
           th.assettabletitle Notes
-          th.assettabletitle Edit
+          th.assettabletitle
           tbody.assettable
             each elem in assets
               tr.assettable
@@ -45,7 +45,7 @@ body
                 td.assettable #{elem.Location}
                 td.assettable #{elem.Size}
                 td.assettable #{elem.Notes}
-                td.assettable Edit
+                button(class="btn btn-small" type="button") Edit
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
