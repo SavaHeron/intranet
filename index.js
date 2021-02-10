@@ -5,6 +5,7 @@ const http = require(`http`);
 const crypto = require(`crypto`);
 const bodyParser = require(`body-parser`);
 const session = require(`express-session`);
+const cookieParser = require(`cookie-parser`);
 const app = express();
 const port = 3000;
 
@@ -85,6 +86,7 @@ app.set('trust proxy', 1)
 app.use(express.static(__dirname + `public`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(session({
     secret: ``,
     resave: false,
@@ -93,17 +95,16 @@ app.use(session({
 }))
 
 app.get(`/`, async function (req, resp) {
-    let cookieSessionID = req.session.cookie.sessionID;
-    console.log(req.cookies)
+    let cookieSessionID = req.cookies.sessionID;
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
         if (typeof result != `undefined`) {
             return resp.render(`index`);
         } else {
-            return resp.render(`login`);
+            return resp.redirect(`/login`);
         };
     } else {
-        return resp.render(`login`);
+        return resp.redirect(`/login`);
     };
 
 });
@@ -187,7 +188,7 @@ app.get(`/assetmgt/*`, async function (req, res) {
     };
 });
 
-app.post(`/`, async function (req, resp) {
+app.post(`/login`, async function (req, resp) {
     let username = req.body.username;
     let password = req.body.password;
     crypto.pbkdf2(password, ``, 100000, 64, `sha512`, async function (error, derivedKey) {
@@ -205,7 +206,7 @@ app.post(`/`, async function (req, resp) {
                 let sessionID = crypto.randomBytes(64).toString(`hex`);
                 resp.cookie(`sessionID`, sessionID, { expires: new Date(Date.now() + 1800000), secure: true });
                 setSessionID(username, sessionID);
-                resp.render(`index`);
+                resp.redirect(`/`);
             } else {
                 return resp.redirect(`/error/401`);
             };
