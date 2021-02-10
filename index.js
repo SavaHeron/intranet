@@ -150,6 +150,11 @@ app.get(`/login`, (_req, res) => {
     };
 });
 
+app.get(`logout`, (_req, res) => {
+    res.clearCookie(sessionID);
+    res.render(`/`);
+});
+
 app.get(`/public/js/bootstrap.bundle.min.js`, (_req, res) => {
     res.sendFile(`./public/js/bootstrap.bundle.min.js`, { root: __dirname });
 });
