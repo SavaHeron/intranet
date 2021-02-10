@@ -94,6 +94,7 @@ app.use(session({
 
 app.get(`/`, async function (req, resp) {
     let cookieSessionID = req.session.cookie.sessionID;
+    console.log(req.cookies)
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
         if (typeof result != `undefined`) {
@@ -189,7 +190,7 @@ app.get(`/assetmgt/*`, async function (req, res) {
 app.post(`/`, async function (req, resp) {
     let username = req.body.username;
     let password = req.body.password;
-    crypto.pbkdf2(password, `putsalthere`, 100000, 64, `sha512`, async function (error, derivedKey) {
+    crypto.pbkdf2(password, ``, 100000, 64, `sha512`, async function (error, derivedKey) {
         if (error) {
             fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
                 if (error) {
