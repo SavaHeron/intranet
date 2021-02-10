@@ -27,7 +27,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         a.nav-link(href='/logout') Logout
 body
 .container              
-     table.table
+    table.table
         tr
           th ID
           th Title
@@ -35,15 +35,15 @@ body
           th Location 
           th Size 
           th Notes 
-      tbody 
-        each record in result
-          tr
-            td #{record.ID}
-            td #{record.Title}
-            td #{record.Contents}
-            td #{record.Location}
-            td #{record.Size}
-            td #{record.Notes}
+    tbody 
+      each record in result
+        tr
+          td #{record.ID}
+          td #{record.Title}
+          td #{record.Contents}
+          td #{record.Location}
+          td #{record.Size}
+          td #{record.Notes}
   .footer.footer
     .container
       span.text-muted Copyright © intranet.heron-green.co.uk 2021
