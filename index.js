@@ -297,7 +297,7 @@ app.get(`/assetmgt/asseteditor/*`, async function (req, res) {
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
         if (typeof result != `undefined`) {
-            let ID = req.originalUrl.split(`/`)[2];
+            let ID = req.originalUrl.split(`/`)[5];
             let result = await getasset(ID);
             if (typeof result != `undefined`) {
                 let contents = result.Contents;
