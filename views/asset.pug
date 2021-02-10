@@ -27,7 +27,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         a.nav-link(href='/logout') Logout
 body
 .container-fluid      
-    table
+    table(style='width:100%', border='1')
       tr.assettable
         th.assettabletitle ID
         th.assettabletitle Title
@@ -35,7 +35,6 @@ body
         th.assettabletitle Location
         th.assettabletitle Size
         th.assettabletitle Notes
-        th.assettabletitle
         tbody.assettable
             tr.assettable
               td.assettable #{asset.ID}
@@ -44,8 +43,6 @@ body
               td.assettable #{asset.Location}
               td.assettable #{asset.Size}
               td.assettable #{asset.Notes}
-              td
-                a.button.btn(class="btn btn-small" type="button" href=`/assetmgt/asseteditor/${asset.ID}`) Edit
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
