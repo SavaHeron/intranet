@@ -110,7 +110,19 @@ app.get(`/`, async function (req, res) {
 });
 
 app.get(`/assetmgt`, (_req, res) => {
-    res.render(`assetmgt`);
+    let cookieSessionID = req.cookies.sessionID;
+    if (typeof cookieSessionID != `undefined`) {
+        let result = await getSessionID(cookieSessionID);
+        if (typeof result != `undefined`) {
+            res.render(`assetmgt`);
+        } else {
+            res.cookie(`redirect`, req.originalUrl, { secure: true });
+            return res.redirect(`/login`);
+        };
+    } else {
+        res.cookie(`redirect`, req.originalUrl, { secure: true });
+        return res.redirect(`/login`);
+    };
 });
 
 app.get(`/assetmgt/assets`, (_req, res) => {
