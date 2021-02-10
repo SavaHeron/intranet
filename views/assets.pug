@@ -26,8 +26,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       li.nav-item
         a.nav-link(href='/logout') Logout
 body
-  each elem,i in json
-    p !{elem.id}-!{elem.name}
+  h2 #{contents}
   .footer.footer
     .container
       span.text-muted Copyright © intranet.heron-green.co.uk 2021
