@@ -237,7 +237,7 @@ app.post(`/login`, async function (req, res) {
                 if (typeof redirect != `undefined`) {
                     console.log(redirect);
                     res.clearCookie(`redirect`);
-                    res.redirect(`/`);
+                    res.redirect(redirect);
                 } else {
                     res.redirect(`/`);
                 };
