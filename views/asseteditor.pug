@@ -1,6 +1,6 @@
 doctype html
 head
-  title Asset Editor - Intranet
+  title Editing #{assets[0].ID} - Intranet
   link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
   link(rel='stylesheet' type='text/css' href='/public/css/main.css')
   script(type='text/javascript' src='/public/js/jquery.min.js')
@@ -24,4 +24,29 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           a.dropdown-item(href='/assetmgt/locationeditor') Location Editor
     ul.navbar-nav.float-right
       li.nav-item
-        a.nav-link(href='/logout') Logout
+        a.nav-link(href='/login') Login
+body
+.container-fluid      
+    table.assettable
+        tr.assettable
+          th.assettabletitle ID
+          th.assettabletitle Title
+          th.assettabletitle Contents
+          th.assettabletitle Location
+          th.assettabletitle Size
+          th.assettabletitle Notes
+          th.assettabletitle
+          tbody.assettable
+            each elem in assets
+              tr.assettable
+                td.assettable #{elem.ID}
+                td.assettable #{elem.Title}
+                td.assettable #{elem.Contents}
+                td.assettable #{elem.Location}
+                td.assettable #{elem.Size}
+                td.assettable #{elem.Notes}
+                td
+                  a.button.btn(class="btn btn-small" type="button" href=`/assetmgt/asseteditor/${elem.ID}`) Edit
+.footer.footer
+  .container
+    span.text-muted Copyright © intranet.heron-green.co.uk 2021
