@@ -152,7 +152,7 @@ app.get(`/login`, (_req, res) => {
 
 app.get(`logout`, (_req, res) => {
     res.clearCookie(sessionID);
-    res.render(`/`);
+    res.redirect(`/`);
 });
 
 app.get(`/public/js/bootstrap.bundle.min.js`, (_req, res) => {
