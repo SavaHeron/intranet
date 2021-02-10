@@ -1,6 +1,6 @@
 doctype html
 head
-  title Asset #{asset.ID}- Intranet
+  title Asset #{asset.ID} - Intranet
   link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
   link(rel='stylesheet' type='text/css' href='/public/css/main.css')
   script(type='text/javascript' src='/public/js/jquery.min.js')
@@ -27,25 +27,25 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
         a.nav-link(href='/logout') Logout
 body
 .container-fluid      
-    table.assettable
-        tr.assettable
-          th.assettabletitle ID
-          th.assettabletitle Title
-          th.assettabletitle Contents
-          th.assettabletitle Location
-          th.assettabletitle Size
-          th.assettabletitle Notes
-          th.assettabletitle
-          tbody.assettable
-              tr.assettable
-                td.assettable #{asset.ID}
-                td.assettable #{asset.Title}
-                td.assettable #{asset.Contents}
-                td.assettable #{asset.Location}
-                td.assettable #{asset.Size}
-                td.assettable #{asset.Notes}
-                td
-                  a.button.btn(class="btn btn-small" type="button" href=`/assetmgt/asseteditor/${asset.ID}`) Edit
+  table.assettable
+      tr.assettable
+        th.assettabletitle ID
+        th.assettabletitle Title
+        th.assettabletitle Contents
+        th.assettabletitle Location
+        th.assettabletitle Size
+        th.assettabletitle Notes
+        th.assettabletitle
+        tbody.assettable
+            tr.assettable
+              td.assettable #{asset.ID}
+              td.assettable #{asset.Title}
+              td.assettable #{asset.Contents}
+              td.assettable #{asset.Location}
+              td.assettable #{asset.Size}
+              td.assettable #{asset.Notes}
+              td
+                a.button.btn(class="btn btn-small" type="button" href=`/assetmgt/asseteditor/${asset.ID}`) Edit
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021

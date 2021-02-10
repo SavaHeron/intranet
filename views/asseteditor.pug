@@ -1,6 +1,6 @@
 doctype html
 head
-  title Editing #{asset.ID}- Intranet
+  title Editing #{asset.ID} - Intranet
   link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
   link(rel='stylesheet' type='text/css' href='/public/css/main.css')
   script(type='text/javascript' src='/public/js/jquery.min.js')
@@ -26,23 +26,23 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       li.nav-item
         a.nav-link(href='/login') Login
 body
-.container-fluid      
-    table.assettable
-        tr.assettable
-          th.assettabletitle ID
-          th.assettabletitle Title
-          th.assettabletitle Contents
-          th.assettabletitle Location
-          th.assettabletitle Size
-          th.assettabletitle Notes
-          tbody.assettable
-              tr.assettable
-                td.assettable #{asset.ID}
-                td.assettable #{asset.Title}
-                td.assettable #{asset.Contents}
-                td.assettable #{asset.Location}
-                td.assettable #{asset.Size}
-                td.assettable #{asset.Notes}
+.container-fluid
+  table.assettable
+      tr.assettable
+        th.assettabletitle ID
+        th.assettabletitle Title
+        th.assettabletitle Contents
+        th.assettabletitle Location
+        th.assettabletitle Size
+        th.assettabletitle Notes
+        tbody.assettable
+            tr.assettable
+              td.assettable #{asset.ID}
+              td.assettable #{asset.Title}
+              td.assettable #{asset.Contents}
+              td.assettable #{asset.Location}
+              td.assettable #{asset.Size}
+              td.assettable #{asset.Notes}
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
