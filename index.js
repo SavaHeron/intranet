@@ -4,9 +4,11 @@ const fs = require(`fs`);
 const http = require(`http`);
 const crypto = require(`crypto`);
 const bodyParser = require(`body-parser`);
+const cookieParser = require('cookie-parser');
 const session = require(`express-session`);
 const app = express();
 const port = 3000;
+const cookiesecret = ``;
 
 const pool = mariadb.createPool({
     host: `localhost`,
@@ -85,8 +87,9 @@ app.set('trust proxy', 1)
 app.use(express.static(__dirname + `public`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser(cookiesecret))
 app.use(session({
-    secret: ``,
+    secret: cookiesecret,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true }
