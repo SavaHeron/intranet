@@ -206,9 +206,11 @@ app.get(`/assetmgt/*`, async function (req, res) {
                 res.redirect(`/error/404`);
             };
         } else {
+            res.cookie(`redirect`, req.originalUrl, { secure: true });
             return res.redirect(`/login`);
         };
     } else {
+        res.cookie(`redirect`, req.originalUrl, { secure: true });
         return res.redirect(`/login`);
     };
 });
@@ -231,7 +233,14 @@ app.post(`/login`, async function (req, res) {
                 let sessionID = crypto.randomBytes(64).toString(`hex`);
                 res.cookie(`sessionID`, sessionID, { expires: new Date(Date.now() + 1800000), secure: true });
                 setSessionID(username, sessionID);
-                res.redirect(`/`);
+                let redirect = req.cookies.redirect;
+                if (typeof redirect != `undefined`) {
+                    console.log(redirect);
+                    res.clearCookie(`redirect`);
+                    res.redirect(`/`);
+                } else {
+                    res.redirect(`/`);
+                };
             } else {
                 return res.redirect(`/error/401`);
             };
