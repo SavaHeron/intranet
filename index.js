@@ -193,13 +193,23 @@ app.get(`/favicon.ico`, (_req, res) => {
 });
 
 app.get(`/assetmgt/*`, async function (req, res) {
-    let ID = req.originalUrl.split(`/`)[2];
-    let result = await getasset(ID);
-    if (typeof result != `undefined`) {
-        let contents = result.Contents;
-        res.render(`asset`, { ID: ID, contents: contents });
+    let cookieSessionID = req.cookies.sessionID;
+    if (typeof cookieSessionID != `undefined`) {
+        let result = await getSessionID(cookieSessionID);
+        if (typeof result != `undefined`) {
+            let ID = req.originalUrl.split(`/`)[2];
+            let result = await getasset(ID);
+            if (typeof result != `undefined`) {
+                let contents = result.Contents;
+                res.render(`asset`, { ID: ID, contents: contents });
+            } else {
+                res.redirect(`/error/404`);
+            };
+        } else {
+            return res.redirect(`/login`);
+        };
     } else {
-        res.redirect(`/error/404`);
+        return res.redirect(`/login`);
     };
 });
 
