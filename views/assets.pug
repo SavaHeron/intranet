@@ -1,6 +1,6 @@
 doctype html
 head
-  title Asset Editor - Intranet
+  title Assets - Intranet
   link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
   link(rel='stylesheet' type='text/css' href='/public/css/main.css')
   script(type='text/javascript' src='/public/js/jquery.min.js')
@@ -36,17 +36,14 @@ body
           th Size 
           th Notes 
     tbody 
-      each elem in #{result}
+      each elem in Assets
         tr
           td #{elem.ID}
           td #{elem.Title}
           td #{elem.Contents}
           td #{elem.Location}
           td #{elem.Size}
-          td #{elem.Notes}
-      else
-        tr
-          td None!       
+          td #{elem.Notes}   
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
