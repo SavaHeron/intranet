@@ -36,7 +36,7 @@ body
           th Size 
           th Notes 
     tbody 
-      each elem,i in result
+      each elem in result
         tr
           td #{elem.ID}
           td #{elem.Title}
@@ -44,6 +44,9 @@ body
           td #{elem.Location}
           td #{elem.Size}
           td #{elem.Notes}
+      else
+        tr
+          td None!       
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
