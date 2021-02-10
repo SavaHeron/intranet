@@ -95,17 +95,17 @@ app.use(session({
     cookie: { secure: true }
 }))
 
-app.get(`/`, async function (req, resp) {
+app.get(`/`, async function (req, res) {
     let cookieSessionID = req.cookies.sessionID;
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
         if (typeof result != `undefined`) {
-            return resp.render(`index`);
+            return res.render(`index`);
         } else {
-            return resp.redirect(`/login`);
+            return res.redirect(`/login`);
         };
     } else {
-        return resp.redirect(`/login`);
+        return res.redirect(`/login`);
     };
 });
 
@@ -137,17 +137,17 @@ app.get(`/error/401`, (_req, res) => {
     res.render(`401`);
 });
 
-app.get(`/login`, (_req, res) => {
+app.get(`/login`, async function (_req, res) {
     let cookieSessionID = req.cookies.sessionID;
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
         if (typeof result != `undefined`) {
-            return resp.redirect(`/`);
+            return res.redirect(`/`);
         } else {
-            return resp.render(`login`);
+            return res.render(`login`);
         };
     } else {
-        return resp.render(`/login`);
+        return res.render(`/login`);
     };
 });
 
@@ -203,7 +203,7 @@ app.get(`/assetmgt/*`, async function (req, res) {
     };
 });
 
-app.post(`/login`, async function (req, resp) {
+app.post(`/login`, async function (req, res) {
     let username = req.body.username;
     let password = req.body.password;
     crypto.pbkdf2(password, passwords.salt, 100000, 64, `sha512`, async function (error, derivedKey) {
@@ -219,11 +219,11 @@ app.post(`/login`, async function (req, resp) {
             let result = await getuser(username, hashedPassword);
             if (typeof result != `undefined`) {
                 let sessionID = crypto.randomBytes(64).toString(`hex`);
-                resp.cookie(`sessionID`, sessionID, { expires: new Date(Date.now() + 1800000), secure: true });
+                res.cookie(`sessionID`, sessionID, { expires: new Date(Date.now() + 1800000), secure: true });
                 setSessionID(username, sessionID);
-                resp.redirect(`/`);
+                res.redirect(`/`);
             } else {
-                return resp.redirect(`/error/401`);
+                return res.redirect(`/error/401`);
             };
         };
     });
