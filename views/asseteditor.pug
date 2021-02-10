@@ -1,6 +1,6 @@
 doctype html
 head
-  title Editing - Intranet
+  title Editing #{asset.ID}- Intranet
   link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
   link(rel='stylesheet' type='text/css' href='/public/css/main.css')
   script(type='text/javascript' src='/public/js/jquery.min.js')
@@ -35,18 +35,14 @@ body
           th.assettabletitle Location
           th.assettabletitle Size
           th.assettabletitle Notes
-          th.assettabletitle
           tbody.assettable
-            each elem in assets
               tr.assettable
-                td.assettable #{elem.ID}
-                td.assettable #{elem.Title}
-                td.assettable #{elem.Contents}
-                td.assettable #{elem.Location}
-                td.assettable #{elem.Size}
-                td.assettable #{elem.Notes}
-                td
-                  a.button.btn(class="btn btn-small" type="button" href=`/assetmgt/asseteditor/${elem.ID}`) Edit
+                td.assettable #{asset.ID}
+                td.assettable #{asset.Title}
+                td.assettable #{asset.Contents}
+                td.assettable #{asset.Location}
+                td.assettable #{asset.Size}
+                td.assettable #{asset.Notes}
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
