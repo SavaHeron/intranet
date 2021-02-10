@@ -27,18 +27,14 @@ body {
 .assettable {
   color: #ffffff;
   vertical-align: middle;
-  padding: .5rem;
-  padding-top: 50px;
-  border-top: 1px solid #ffffff;
-  
+  padding: 1rem;
+  border-bottom: 1px solid #ffffff;
 }
 
 .assettabletitle {
   color: #ffffff;
   vertical-align: middle;
-  padding: .5rem;
-  padding-top: 50px;
-  border-top: 1px solid #ffffff;
+  padding: 1rem;
   font-size: 1.5em;
 }
 
