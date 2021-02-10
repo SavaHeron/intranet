@@ -92,7 +92,7 @@ app.use(session({
 }))
 
 app.get(`/`, async function (req, resp) {
-    let cookieSessionID = req.session.cookies.sessionID;
+    let cookieSessionID = req.session.cookie.sessionID;
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
         if (typeof result != `undefined`) {
@@ -185,7 +185,7 @@ app.get(`/assetmgt/*`, async function (req, res) {
     };
 });
 
-app.post(`/login`, async function (req, resp) {
+app.post(`/`, async function (req, resp) {
     let username = req.body.username;
     let password = req.body.password;
     crypto.pbkdf2(password, `putsalthere`, 100000, 64, `sha512`, async function (error, derivedKey) {
