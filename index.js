@@ -228,7 +228,8 @@ app.get(`/assetmgt/*`, async function (req, res) {
 });
 
 app.post(`/login`, async function (req, res) {
-    let username = req.body.username;
+    let username = (req.body.username).toLowerCase();
+    console.log(username);
     let password = req.body.password;
     crypto.pbkdf2(password, passwords.salt, 100000, 64, `sha512`, async function (error, derivedKey) {
         if (error) {
@@ -247,7 +248,6 @@ app.post(`/login`, async function (req, res) {
                 setSessionID(username, sessionID);
                 let redirect = req.cookies.redirect;
                 if (typeof redirect != `undefined`) {
-                    console.log(redirect);
                     res.clearCookie(`redirect`);
                     res.redirect(redirect);
                 } else {
