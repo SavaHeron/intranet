@@ -148,7 +148,7 @@ app.get(`/assetmgt/assets`, async function (req, res) {
         if (typeof result != `undefined`) {
             let result = await getassets();
             if (typeof result != `undefined`) {
-                let contents = result.Contents;
+                let contents = result;
                 res.render(`assets`, { contents: contents });
             } else {
                 res.redirect(`/error/404`);
