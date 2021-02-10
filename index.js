@@ -245,8 +245,7 @@ app.get(`/assetmgt/asseteditor/*`, async function (req, res) {
             let ID = req.originalUrl.split(`/`)[3];
             let result = await getasset(ID);
             if (typeof result != `undefined`) {
-                let contents = result.Contents;
-                res.render(`asseteditor`, { ID: ID, contents: contents });
+                res.render(`asseteditor`, { assets: result });
             } else {
                 res.redirect(`/error/404`);
             };
