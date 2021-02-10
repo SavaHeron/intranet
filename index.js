@@ -151,8 +151,8 @@ app.get(`/login`, async function (_req, res) {
     };
 });
 
-app.get(`logout`, (_req, res) => {
-    res.clearCookie(sessionID);
+app.get(`/logout`, (_req, res) => {
+    res.clearCookie(`sessionID`);
     res.redirect(`/`);
 });
 
