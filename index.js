@@ -48,7 +48,7 @@ async function getuser(username, password) {
     };
 };
 
-async function setSessionID(username) {
+async function setSessionID(username, sessionID) {
     try {
         let connection = await pool.getConnection();
         let rows = await connection.query(`UPDATE users SET sessionID = "${sessionID}" WHERE username = "${username}"`);
@@ -63,15 +63,47 @@ async function setSessionID(username) {
     };
 };
 
+async function getSessionID(sessionID) {
+    try {
+        let connection = await pool.getConnection();
+        let rows = await connection.query(`SELECT * FROM users WHERE sessionID LIKE "${sessionID}"`);
+        connection.end();
+        return rows[0];
+    } catch (error) {
+        fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
+            if (error) {
+                console.error(error);
+            };
+        });
+        console.error(error);
+    };
+};
+
 app.set(`views`, `./views`);
 app.set(`view engine`, `pug`);
 app.use(express.static(__dirname + `public`));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(session({
+    secret: ``,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}))
 
-app.get(`/`, (_req, res) => {
-    res.render(`index`);
+app.get(`/`, async function (req, resp) {
+    let cookieSessionID = req.cookies.sessionID;
+    if (typeof cookieSessionID != `undefined`) {
+        let result = await getSessionID(cookieSessionID);
+        if (result.length == 1) {
+            return resp.render(`index`);
+        } else {
+            return resp.render(`login`);
+        };
+    } else {
+        return resp.render(`login`);
+    };
+
 });
 
 app.get(`/assetmgt`, (_req, res) => {
@@ -92,10 +124,6 @@ app.get(`/assetmgt/asseteditor`, (_req, res) => {
 
 app.get(`/assetmgt/locationeditor`, (_req, res) => {
     res.render(`locationeditor`);
-});
-
-app.get(`/critsys`, (_req, res) => {
-    res.render(`critsys`);
 });
 
 app.get(`/error/404`, (_req, res) => {
@@ -174,7 +202,7 @@ app.post(`/login`, async function (req, resp) {
             if (typeof result != `undefined`) {
                 let sessionID = crypto.randomBytes(64).toString(`hex`);
                 resp.cookie(`sessionID`, sessionID, { expires: new Date(Date.now() + 1800000) });
-                setSessionID(sessionID);
+                setSessionID(username, sessionID);
                 resp.redirect(`/`);
             } else {
                 return resp.redirect(`/error/401`);
