@@ -26,7 +26,24 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       li.nav-item
         a.nav-link(href='/logout') Logout
 body
-  h1 #{Assets} 
+.container              
+    table.table
+        tr
+          th ID
+          th Title
+          th Contents
+          th Location 
+          th Size 
+          th Notes 
+    tbody 
+      each elem in Assets
+        tr
+          td #{elem.ID}
+          td #{elem.Title}
+          td #{elem.Contents}
+          td #{elem.Location}
+          td #{elem.Size}
+          td #{elem.Notes}   
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
