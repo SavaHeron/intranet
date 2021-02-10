@@ -6,13 +6,14 @@ const crypto = require(`crypto`);
 const bodyParser = require(`body-parser`);
 const session = require(`express-session`);
 const cookieParser = require(`cookie-parser`);
+const passwords = redirect(`/home/pi/passwords.json`)
 const app = express();
 const port = 3000;
 
 const pool = mariadb.createPool({
     host: `localhost`,
     user: `admin`,
-    password: ``,
+    password: passwords.database,
     connectionLimit: 5,
     database: `intranet`
 });
@@ -88,7 +89,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
-    secret: ``,
+    secret: passwords.sessionsecret,
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true }
@@ -205,7 +206,7 @@ app.get(`/assetmgt/*`, async function (req, res) {
 app.post(`/login`, async function (req, resp) {
     let username = req.body.username;
     let password = req.body.password;
-    crypto.pbkdf2(password, ``, 100000, 64, `sha512`, async function (error, derivedKey) {
+    crypto.pbkdf2(password, passwords.salt, 100000, 64, `sha512`, async function (error, derivedKey) {
         if (error) {
             fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
                 if (error) {
