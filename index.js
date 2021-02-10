@@ -4,7 +4,7 @@ const fs = require(`fs`);
 const http = require(`http`);
 const crypto = require(`crypto`);
 const bodyParser = require(`body-parser`);
-const sessions = require(`express-session`);
+const session = require(`express-session`);
 const app = express();
 const port = 3000;
 
@@ -92,6 +92,7 @@ app.use(session({
 }))
 
 app.get(`/`, async function (req, resp) {
+    console.log(req.session);
     let cookieSessionID = req.cookies.sessionID;
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
