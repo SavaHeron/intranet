@@ -34,6 +34,22 @@ async function getasset(ID) {
     };
 };
 
+async function getassets() {
+    try {
+        let connection = await pool.getConnection();
+        let rows = await connection.query(`SELECT * FROM assets`);
+        connection.end();
+        return rows[0];
+    } catch (error) {
+        fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
+            if (error) {
+                return console.error(error);
+            };
+        });
+        return console.error(error);
+    };
+};
+
 async function getuser(username, password) {
     try {
         let connection = await pool.getConnection();
@@ -125,8 +141,26 @@ app.get(`/assetmgt`, async function (req, res) {
     };
 });
 
-app.get(`/assetmgt/assets`, (_req, res) => {
-    res.render(`assets`);
+app.get(`/assetmgt/assets`, (req, res) => {
+    let cookieSessionID = req.cookies.sessionID;
+    if (typeof cookieSessionID != `undefined`) {
+        let result = await getSessionID(cookieSessionID);
+        if (typeof result != `undefined`) {
+            let result = await getassets();
+            if (typeof result != `undefined`) {
+                let contents = result.Contents;
+                res.render(`assets`, { contents: contents });
+            } else {
+                res.redirect(`/error/404`);
+            };
+        } else {
+            res.cookie(`redirect`, req.originalUrl, { secure: true });
+            return res.redirect(`/login`);
+        };
+    } else {
+        res.cookie(`redirect`, req.originalUrl, { secure: true });
+        return res.redirect(`/login`);
+    };
 });
 
 app.get(`/assetmgt/locations`, (_req, res) => {
