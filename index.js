@@ -39,6 +39,7 @@ async function getassets() {
         let connection = await pool.getConnection();
         let rows = await connection.query(`SELECT * FROM assets`);
         connection.end();
+        console.log(rows)
         return rows[0];
     } catch (error) {
         fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
@@ -149,7 +150,8 @@ app.get(`/assetmgt/assets`, async function (req, res) {
             let result = await getassets();
             if (typeof result != `undefined`) {
                 let contents = result;
-                res.render(`assets`, { contents: JSON.stringify(contents) });
+                console.log(contents)
+                res.render(`assets`, contents);
             } else {
                 res.redirect(`/error/404`);
             };
