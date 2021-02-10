@@ -245,7 +245,7 @@ app.get(`/assetmgt/asseteditor/*`, async function (req, res) {
             let ID = req.originalUrl.split(`/`)[3];
             let result = await getasset(ID);
             if (typeof result != `undefined`) {
-                res.render(`asseteditor`, { assets: result });
+                res.render(`asseteditor`, { asset: result });
             } else {
                 res.redirect(`/error/404`);
             };
@@ -267,7 +267,7 @@ app.get(`/assetmgt/*`, async function (req, res) {
             let ID = req.originalUrl.split(`/`)[2];
             let result = await getasset(ID);
             if (typeof result != `undefined`) {
-                res.render(`asset`, { assets: result });
+                res.render(`asset`, { asset: result });
             } else {
                 res.redirect(`/error/404`);
             };
