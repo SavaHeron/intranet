@@ -53,7 +53,7 @@ async function getassets() {
 async function getuser(username, password) {
     try {
         let connection = await pool.getConnection();
-        let rows = await connection.query(`SELECT * FROM users WHERE username = ? AND password = ?`, [username], [password]);
+        let rows = await connection.query(`SELECT * FROM users WHERE username = ? AND password = ?`, [username, password]);
         connection.end();
         return rows[0];
     } catch (error) {
@@ -69,7 +69,7 @@ async function getuser(username, password) {
 async function setSessionID(username, sessionID) {
     try {
         let connection = await pool.getConnection();
-        await connection.query(`UPDATE users SET sessionID = ? WHERE username = ?`, [sessionID], [username]);
+        await connection.query(`UPDATE users SET sessionID = ? WHERE username = ?`, [sessionID, username]);
         connection.end();
     } catch (error) {
         fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
