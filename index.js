@@ -21,7 +21,7 @@ const pool = mariadb.createPool({
 async function getasset(ID) {
     try {
         let connection = await pool.getConnection();
-        let rows = await connection.query(`SELECT * FROM assets WHERE ID LIKE = ?`, [ID]);
+        let rows = await connection.query(`SELECT * FROM assets WHERE ID = ? LIMIT 1`, [ID]);
         connection.end();
         return rows[0];
     } catch (error) {
