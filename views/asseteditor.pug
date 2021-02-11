@@ -37,7 +37,7 @@ body
         th.assettabletitle Notes
         tbody.assettable
             tr.assettable
-              td.assettable #{asset.ID}
+              td.assettable.input.form-control(type=`text` name=`ID` placeholder=asset.ID)
               td.assettable #{asset.Title}
               td.assettable #{asset.Contents}
               td.assettable #{asset.Location}
