@@ -37,12 +37,14 @@ body
         th.assettabletitle Notes
         tbody.assettable
             tr.assettable
-              td.assettable.input.form-control(type=`text` name=`ID` placeholder=asset.ID)
-              td.assettable #{asset.Title}
-              td.assettable #{asset.Contents}
-              td.assettable #{asset.Location}
-              td.assettable #{asset.Size}
-              td.assettable #{asset.Notes}
+              form.login-form.text-center(action=`/assetmgt/asseteditor` method=`POST`)
+                td
+                  input.form-control(type=`text` name=`ID` placeholder=asset.Title)
+                td.assettable #{asset.Title}
+                td.assettable #{asset.Contents}
+                td.assettable #{asset.Location}
+                td.assettable #{asset.Size}
+                td.assettable #{asset.Notes}
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
