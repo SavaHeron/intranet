@@ -21,7 +21,7 @@ const pool = mariadb.createPool({
 async function getasset(ID) {
     try {
         let connection = await pool.getConnection();
-        let rows = await connection.query(`SELECT * FROM assets WHERE ID LIKE "${ID}"`);
+        let rows = await connection.query(`SELECT * FROM assets WHERE ID LIKE = ? LIMIT 1`, [ID]);
         connection.end();
         return rows[0];
     } catch (error) {
@@ -53,7 +53,7 @@ async function getassets() {
 async function getuser(username, password) {
     try {
         let connection = await pool.getConnection();
-        let rows = await connection.query(`SELECT * FROM users WHERE username LIKE "${username}" AND password LIKE "${password}"`);
+        let rows = await connection.query(`SELECT * FROM users WHERE username = ? AND password = ?`, [username], [password]);
         connection.end();
         return rows[0];
     } catch (error) {
@@ -69,7 +69,7 @@ async function getuser(username, password) {
 async function setSessionID(username, sessionID) {
     try {
         let connection = await pool.getConnection();
-        await connection.query(`UPDATE users SET sessionID = "${sessionID}" WHERE username = "${username}"`);
+        await connection.query(`UPDATE users SET sessionID = ? WHERE username = ?`, [sessionID], [username]);
         connection.end();
     } catch (error) {
         fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
@@ -84,7 +84,7 @@ async function setSessionID(username, sessionID) {
 async function getSessionID(sessionID) {
     try {
         let connection = await pool.getConnection();
-        let rows = await connection.query(`SELECT * FROM users WHERE SessionID LIKE "${sessionID}"`);
+        let rows = await connection.query(`SELECT * FROM users WHERE SessionID = ?`, [sessionID]);
         connection.end();
         return rows[0];
     } catch (error) {
