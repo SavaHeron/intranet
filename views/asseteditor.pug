@@ -38,7 +38,7 @@ body
         th.assettabletitle
         tbody.assettable
             tr.assettable
-              form.login-form.text-center(action=`/assetmgt/asseteditor` method=`POST`)
+              form.login-form.text-center(action=`/assetmgt/asseteditor/${asset.ID}` method=`POST`)
                 td
                   input.form-control(type=`text` name=`ID` placeholder=asset.ID)
                 td
@@ -46,14 +46,13 @@ body
                 td
                   input.form-control(type=`text` name=`Contents` placeholder=asset.Contents)
                 td
-                  input.form-control(type=`text` name=`Locations` placeholder=asset.Locations)
+                  input.form-control(type=`text` name=`Location` placeholder=asset.Locations)
                 td
                   input.form-control(type=`text` name=`Size` placeholder=asset.Size)
                 td
                   input.form-control(type=`text` name=`Notes` placeholder=asset.Notes)
                 td
                   a.button.btn.btn-primary(type=`submit`) Submit
-
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
