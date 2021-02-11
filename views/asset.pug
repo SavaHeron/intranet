@@ -35,6 +35,7 @@ body
         th.assettabletitle Location
         th.assettabletitle Size
         th.assettabletitle Notes
+        th.assettabletitle
         tbody.assettable
             tr.assettable
               td.assettable #{asset.ID}
@@ -43,6 +44,8 @@ body
               td.assettable #{asset.Location}
               td.assettable #{asset.Size}
               td.assettable #{asset.Notes}
+              td
+                a.button.btn(type="button" href=`/assetmgt/asseteditor/${elem.ID}`) Edit
 .footer.footer
   .container
     span.text-muted Copyright © intranet.heron-green.co.uk 2021
