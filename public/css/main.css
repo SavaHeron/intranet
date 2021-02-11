@@ -61,19 +61,6 @@ form {
   width:250px;
 }
 
-.btn {
-  background: #1d4094;
-  border-color: #1d4094;
-  padding-left: 15px;
-  padding-right: 15px;
-  color: #ffffff;
-}
-
-.btn:hover {
-  background-color: #fbb900;
-  border-color: #fbb900;
-}
-
 @keyframes noise-anim {
   0% {
     clip: rect(32px, 9999px, 16px, 0);
