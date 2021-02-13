@@ -6,13 +6,15 @@ head
   script(type='text/javascript' src='/public/js/jquery.min.js')
   script(type='text/javascript' src='/public/js/bootstrap.bundle.min.js')
 nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-  a.navbar-brand(href='#') intranet.heron-green.co.uk
+  a.navbar-brand intranet.heron-green.co.uk
   button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation")
     span.navbar-toggler-icon
   #navbarContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
       li.nav-item
         a.nav-link(href='/') Home
+      li.nav-item
+        a.nav-link(href='/assetmgt/addasset') Add Asset
     ul.navbar-nav.float-right
       li.nav-item
         a.nav-link(href='/logout') Logout
