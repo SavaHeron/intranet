@@ -264,10 +264,11 @@ app.post(`/assetmgt/asseteditor/*`, async function (req, res) {
                 Object.keys(updatedrecord).forEach(key => {
                     console.log(updatedrecord[key]);
                     if (updatedrecord[key] = ``) {
-                        console.log(result[key]);
+                        console.log(result);
                         updatedrecord[key] = result[key];
                     };
                 });
+                console.log(updatedrecord);
                 await updateasset(ID, updatedrecord.Title, updatedrecord.Contents, updatedrecord.Location, updatedrecord.Notes);
                 return res.redirect(`/assetmgt/asseteditor/${ID}`);
             } else {
