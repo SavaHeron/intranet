@@ -295,7 +295,7 @@ app.post(`/assetmgt/asseteditor/*`, async function (req, res) {
                     };
                 });
                 await updateasset(ID, updatedrecord.Title, updatedrecord.Contents, updatedrecord.Location, updatedrecord.Notes);
-                return res.redirect(`/assetmgt/asseteditor/${ID}`);
+                return res.redirect(`/`);
             } else {
                 return res.redirect(`/error/404`);
             };
