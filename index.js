@@ -335,6 +335,39 @@ app.get(`/assetmgt/asseteditor/*`, async function (req, res) {
     };
 });
 
+app.get(`/assetmgt/addasset`, async function (req, res) {
+    let cookieSessionID = req.cookies.sessionID;
+    if (typeof cookieSessionID != `undefined`) {
+        let result = await getSessionID(cookieSessionID);
+        if (typeof result != `undefined`) {
+            app.render(`addasset`)
+        } else {
+            res.cookie(`redirect`, req.originalUrl, { secure: true });
+            return res.redirect(`/login`);
+        };
+    } else {
+        res.cookie(`redirect`, req.originalUrl, { secure: true });
+        return res.redirect(`/login`);
+    };
+});
+
+app.post(`/assetmgt/addasset`, async function (req, res) {
+    let cookieSessionID = req.cookies.sessionID;
+    if (typeof cookieSessionID != `undefined`) {
+        let result = await getSessionID(cookieSessionID);
+        if (typeof result != `undefined`) {
+            await addasset(req.body.ID, req.body.Title, req.body.Contents, req.body.Location, req.body.Size, req.body.Notes);
+            return app.redirect(`/`);
+        } else {
+            res.cookie(`redirect`, req.originalUrl, { secure: true });
+            return res.redirect(`/login`);
+        };
+    } else {
+        res.cookie(`redirect`, req.originalUrl, { secure: true });
+        return res.redirect(`/login`);
+    };
+});
+
 app.get(`/assetmgt/*`, async function (req, res) {
     let cookieSessionID = req.cookies.sessionID;
     if (typeof cookieSessionID != `undefined`) {
@@ -387,39 +420,6 @@ app.post(`/login`, async function (req, res) {
             };
         };
     });
-});
-
-app.get(`/assetmgt/addasset`, async function (req, res) {
-    let cookieSessionID = req.cookies.sessionID;
-    if (typeof cookieSessionID != `undefined`) {
-        let result = await getSessionID(cookieSessionID);
-        if (typeof result != `undefined`) {
-            app.render(`addasset`)
-        } else {
-            res.cookie(`redirect`, req.originalUrl, { secure: true });
-            return res.redirect(`/login`);
-        };
-    } else {
-        res.cookie(`redirect`, req.originalUrl, { secure: true });
-        return res.redirect(`/login`);
-    };
-});
-
-app.post(`/assetmgt/addasset`, async function (req, res) {
-    let cookieSessionID = req.cookies.sessionID;
-    if (typeof cookieSessionID != `undefined`) {
-        let result = await getSessionID(cookieSessionID);
-        if (typeof result != `undefined`) {
-            await addasset(req.body.ID, req.body.Title, req.body.Contents, req.body.Location, req.body.Size, req.body.Notes);
-            return app.redirect(`/`);
-        } else {
-            res.cookie(`redirect`, req.originalUrl, { secure: true });
-            return res.redirect(`/login`);
-        };
-    } else {
-        res.cookie(`redirect`, req.originalUrl, { secure: true });
-        return res.redirect(`/login`);
-    };
 });
 
 app.get(`*`, (_req, res) => {
