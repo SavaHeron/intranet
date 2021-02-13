@@ -263,11 +263,8 @@ app.post(`/assetmgt/asseteditor/*`, async function (req, res) {
                 let updatedrecord = { Title: req.body.Title, Contents: req.body.Contents, Location: req.body.Location, Notes: req.body.Notes };
                 console.log(updatedrecord);
                 Object.keys(updatedrecord).forEach(key => {
+                    console.log(updatedrecord);
                     console.log(updatedrecord[key]);
-                    if (updatedrecord[key] = ``) {
-                        console.log(result);
-                        updatedrecord[key] = result[key];
-                    };
                 });
                 console.log(updatedrecord);
                 await updateasset(ID, updatedrecord.Title, updatedrecord.Contents, updatedrecord.Location, updatedrecord.Notes);
