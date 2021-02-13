@@ -262,8 +262,7 @@ app.post(`/assetmgt/asseteditor/*`, async function (req, res) {
             if (typeof result != `undefined`) {
                 let updatedrecord = { "Title": req.body.Title, "Contents": req.body.Contents, "Location": req.body.Location, "Notes": req.body.Notes };
                 for (i in updatedrecord) {
-                    if (updatedrecord[i] == ``) {
-                        console.log((updatedrecord[i]).charCodeAt(0));
+                    if (typeof updatedrecord[i] == `null`) {
                         let key = Object.keys(updatedrecord)[i];
                         updatedrecord[key] = result[key];
                     };
