@@ -260,7 +260,7 @@ app.post(`/assetmgt/asseteditor/*`, async function (req, res) {
             let ID = req.originalUrl.split(`/`)[3];
             let result = await getasset(ID);
             if (typeof result != `undefined`) {
-                let updatedrecord = { "Title": req.body.title, "Contents": req.body.contents, "Location": req.body.location, "Notes": req.body.notes };
+                var updatedrecord = { "Title": req.body.title, "Contents": req.body.contents, "Location": req.body.location, "Notes": req.body.notes };
                 for (i in updatedrecord) {
                     if (typeof updatedrecord[i] == `undefined`) {
                         let key = Object.keys(updatedrecord)[i];
@@ -281,6 +281,10 @@ app.post(`/assetmgt/asseteditor/*`, async function (req, res) {
         res.cookie(`redirect`, req.originalUrl, { secure: true });
         return res.redirect(`/login`);
     };
+});
+
+app.get(`/assetmgt/asseteditor`, (_req, res) => {
+    res.redirect(`/error/404`);
 });
 
 app.get(`/assetmgt/asseteditor/*`, async function (req, res) {
