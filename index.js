@@ -124,18 +124,25 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true }
-}))
+}));
 
 app.get(`/`, async function (req, res) {
     let cookieSessionID = req.cookies.sessionID;
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
         if (typeof result != `undefined`) {
-            return res.render(`index`);
+            let result = await getassets();
+            if (typeof result != `undefined`) {
+                res.render(`assets`, { assets: result });
+            } else {
+                res.redirect(`/error/500`);
+            };
         } else {
+            res.cookie(`redirect`, req.originalUrl, { secure: true });
             return res.redirect(`/login`);
         };
     } else {
+        res.cookie(`redirect`, req.originalUrl, { secure: true });
         return res.redirect(`/login`);
     };
 });
@@ -156,7 +163,7 @@ app.get(`/assetmgt`, async function (req, res) {
     };
 });
 
-app.get(`/assetmgt/assets`, async function (req, res) {
+/*app.get(`/assetmgt/assets`, async function (req, res) {
     let cookieSessionID = req.cookies.sessionID;
     if (typeof cookieSessionID != `undefined`) {
         let result = await getSessionID(cookieSessionID);
@@ -175,27 +182,32 @@ app.get(`/assetmgt/assets`, async function (req, res) {
         res.cookie(`redirect`, req.originalUrl, { secure: true });
         return res.redirect(`/login`);
     };
-});
+});*/
 
-app.get(`/assetmgt/locations`, (_req, res) => {
+/*app.get(`/assetmgt/locations`, (_req, res) => {
     res.render(`locations`);
-});
+});*/
 
-app.get(`/assetmgt/asseteditor`, (_req, res) => {
+/*app.get(`/assetmgt/asseteditor`, (_req, res) => {
     res.render(`asseteditor`);
-});
+});*/
 
-app.get(`/assetmgt/locationeditor`, (_req, res) => {
+/*app.get(`/assetmgt/locationeditor`, (_req, res) => {
     res.render(`locationeditor`);
+});*/
+
+app.get(`/error/401`, (_req, res) => {
+    res.render(`401`);
 });
 
 app.get(`/error/404`, (_req, res) => {
     res.render(`404`);
 });
 
-app.get(`/error/401`, (_req, res) => {
-    res.render(`401`);
+app.get(`/error/500`, (_req, res) => {
+    res.render(`500`);
 });
+
 
 app.get(`/login`, async function (req, res) {
     let cookieSessionID = req.cookies.sessionID;
@@ -240,9 +252,9 @@ app.get(`/public/css/bootstrap.min.css.map`, (_req, res) => {
     res.sendFile(`./public/css/bootstrap.min.css.map`, { root: __dirname });
 });
 
-app.get(`/public/css/error.css`, (_req, res) => {
+/*app.get(`/public/css/error.css`, (_req, res) => {
     res.sendFile(`./public/css/error.css`, { root: __dirname });
-});
+});*/
 
 app.get(`/public/css/main.css`, (_req, res) => {
     res.sendFile(`./public/css/main.css`, { root: __dirname });
