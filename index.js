@@ -260,14 +260,13 @@ app.post(`/assetmgt/asseteditor/*`, async function (req, res) {
             let ID = req.originalUrl.split(`/`)[3];
             let result = await getasset(ID);
             if (typeof result != `undefined`) {
-                var updatedrecord = { "Title": req.body.title, "Contents": req.body.contents, "Location": req.body.location, "Notes": req.body.notes };
+                let updatedrecord = { "Title": req.body.Title, "Contents": req.body.Contents, "Location": req.body.Location, "Notes": req.body.Notes };
                 for (i in updatedrecord) {
                     if (typeof updatedrecord[i] == `undefined`) {
                         let key = Object.keys(updatedrecord)[i];
                         updatedrecord[key] = result[key];
                     };
                 };
-                console.log(JSON.stringify(updatedrecord));
                 await updateasset(ID, JSON.stringify(updatedrecord.Title), JSON.stringify(updatedrecord.Contents), JSON.stringify(updatedrecord.Location), JSON.stringify(updatedrecord.Notes));
                 return res.redirect(`/assetmgt/asseteditor/${ID}`);
             } else {
