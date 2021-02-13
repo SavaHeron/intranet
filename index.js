@@ -70,7 +70,7 @@ async function setSessionID(username, sessionID) {
     try {
         let connection = await pool.getConnection();
         await connection.query(`UPDATE users SET sessionID = ? WHERE username = ?`, [sessionID, username]);
-        connection.end();
+        return connection.end();
     } catch (error) {
         fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
             if (error) {
@@ -94,6 +94,21 @@ async function getSessionID(sessionID) {
             };
         });
         console.error(error);
+    };
+};
+
+async function updateasset(ID, Title, Contents, Location, Notes) {
+    try {
+        let connection = await pool.getConnection();
+        await connection.query(`UPDATE assets SET Title = ?, Contents = ?, Location = ?, Notes = ? WHERE ID = ?`, [Title, Contents, Location, Notes, ID]);
+        return connection.end();
+    } catch (error) {
+        fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
+            if (error) {
+                return console.error(error);
+            };
+        });
+        return console.error(error);
     };
 };
 
@@ -237,6 +252,38 @@ app.get(`/favicon.ico`, (_req, res) => {
     res.sendFile(`./public/resources/favicon.ico`, { root: __dirname });
 });
 
+app.post(`/assetmgt/asseteditor/*`, async function (req, res) {
+    let cookieSessionID = req.cookies.sessionID;
+    if (typeof cookieSessionID != `undefined`) {
+        let result = await getSessionID(cookieSessionID);
+        if (typeof result != `undefined`) {
+            let ID = req.originalUrl.split(`/`)[3];
+            let result = await getasset(ID);
+            if (typeof result != `undefined`) {
+                let updatedrecord = { "Title": req.body.title, "Contents": req.body.contents, "Location": req.body.location, "Notes": req.body.notes };
+                for (i in updatedrecord) {
+                    if (typeof updatedrecord[i] != `undefined`) {
+                        continue
+                    } else {
+                        let key = Object.keys(updatedrecord)[i]
+                        updatedrecord[key] = result[key];
+                    };
+                };
+                await updateasset(ID, updatedrecord.Title, updatedrecord.Contents, updatedrecord.Location, updatedrecord.Notes);
+                return res.redirect(`/assetmgt/asseteditor/${ID}`);
+            } else {
+                return res.redirect(`/error/404`);
+            };
+        } else {
+            res.cookie(`redirect`, req.originalUrl, { secure: true });
+            return res.redirect(`/login`);
+        };
+    } else {
+        res.cookie(`redirect`, req.originalUrl, { secure: true });
+        return res.redirect(`/login`);
+    };
+});
+
 app.get(`/assetmgt/asseteditor/*`, async function (req, res) {
     let cookieSessionID = req.cookies.sessionID;
     if (typeof cookieSessionID != `undefined`) {
@@ -245,9 +292,9 @@ app.get(`/assetmgt/asseteditor/*`, async function (req, res) {
             let ID = req.originalUrl.split(`/`)[3];
             let result = await getasset(ID);
             if (typeof result != `undefined`) {
-                res.render(`asseteditor`, { asset: result });
+                return res.render(`asseteditor`, { asset: result });
             } else {
-                res.redirect(`/error/404`);
+                return res.redirect(`/error/404`);
             };
         } else {
             res.cookie(`redirect`, req.originalUrl, { secure: true });
