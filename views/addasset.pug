@@ -1,0 +1,51 @@
+doctype html
+head
+  title Add Asset - Intranet
+  link(rel='stylesheet' type='text/css' href='/public/css/bootstrap.min.css')
+  link(rel='stylesheet' type='text/css' href='/public/css/main.css')
+  script(type='text/javascript' src='/public/js/jquery.min.js')
+  script(type='text/javascript' src='/public/js/bootstrap.bundle.min.js')
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  a.navbar-brand intranet.heron-green.co.uk
+  button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation")
+    span.navbar-toggler-icon
+  #navbarContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item
+        a.nav-link(href='/') Home
+      li.nav-item
+        a.nav-link(href='/assetmgt/addasset') Add Asset
+    ul.navbar-nav.float-right
+      li.nav-item
+        a.nav-link(href='/logout') Logout
+body
+.container-fluid
+    table(style='width:100%')
+      tr.assettable
+        th.assettabletitle ID
+        th.assettabletitle Title
+        th.assettabletitle Contents
+        th.assettabletitle Location
+        th.assettabletitle Size
+        th.assettabletitle Notes
+        th.assettabletitle
+        tbody.assettable
+            tr.assettable
+              form.login-form.text-center(action=`/assetmgt/asseteditor/` method=`POST`)
+                td
+                  input.form-control(type=`text` name=`ID`)
+                td
+                  input.form-control(type=`text` name=`Title`)
+                td
+                  input.form-control(type=`text` name=`Contents`)
+                td
+                  input.form-control(type=`text` name=`Location`)
+                td
+                  input.form-control(type=`text` name=`Size`)
+                td
+                  input.form-control(type=`text` name=`Notes`)
+                td
+                  button#load.button.btn.btn-primary(type=`submit`) Submit
+.footer.footer
+  .container
+    span.text-muted Copyright © intranet.heron-green.co.uk 2021

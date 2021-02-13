@@ -112,6 +112,21 @@ async function updateasset(ID, Title, Contents, Location, Notes) {
     };
 };
 
+async function addasset(ID, Title, Contents, Location, Size, Notes) {
+    try {
+        let connection = await pool.getConnection();
+        await connection.query(`INSERT INTO assets (ID, Title, Contents, Location, Size, Notes) VALUES , ("${ID}", "${Title}", "${Contents}", "${Location}", "${Size}", "${Notes}")`);
+        return connection.end();
+    } catch (error) {
+        fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
+            if (error) {
+                return console.error(error);
+            };
+        });
+        return console.error(error);
+    };
+};
+
 app.set(`views`, `./views`);
 app.set(`view engine`, `pug`);
 app.set('trust proxy', 1)
@@ -372,6 +387,39 @@ app.post(`/login`, async function (req, res) {
             };
         };
     });
+});
+
+app.get(`/assetmgt/addasset`, async function (req, res) {
+    let cookieSessionID = req.cookies.sessionID;
+    if (typeof cookieSessionID != `undefined`) {
+        let result = await getSessionID(cookieSessionID);
+        if (typeof result != `undefined`) {
+            app.render(`addasset`)
+        } else {
+            res.cookie(`redirect`, req.originalUrl, { secure: true });
+            return res.redirect(`/login`);
+        };
+    } else {
+        res.cookie(`redirect`, req.originalUrl, { secure: true });
+        return res.redirect(`/login`);
+    };
+});
+
+app.post(`/assetmgt/addasset`, async function (req, res) {
+    let cookieSessionID = req.cookies.sessionID;
+    if (typeof cookieSessionID != `undefined`) {
+        let result = await getSessionID(cookieSessionID);
+        if (typeof result != `undefined`) {
+            await addasset(req.body.ID, req.body.Title, req.body.Contents, req.body.Location, req.body.Size, req.body.Notes);
+            return app.redirect(`/`);
+        } else {
+            res.cookie(`redirect`, req.originalUrl, { secure: true });
+            return res.redirect(`/login`);
+        };
+    } else {
+        res.cookie(`redirect`, req.originalUrl, { secure: true });
+        return res.redirect(`/login`);
+    };
 });
 
 app.get(`*`, (_req, res) => {
