@@ -264,7 +264,7 @@ app.post(`/assetmgt/asseteditor/*`, async function (req, res) {
                 Object.keys(updatedrecord).forEach(key => {
                     console.log(updatedrecord[key]);
                     if (!updatedrecord[key]) {
-                        console.log(result);
+                        console.log(result[key]);
                     };
                 });
                 console.log(updatedrecord);
