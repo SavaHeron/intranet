@@ -115,7 +115,7 @@ async function updateasset(ID, Title, Contents, Location, Notes) {
 async function addasset(ID, Title, Contents, Location, Size, Notes) {
     try {
         let connection = await pool.getConnection();
-        await connection.query(`INSERT INTO assets (ID, Title, Contents, Location, Size, Notes) VALUES , ("${ID}", "${Title}", "${Contents}", "${Location}", "${Size}", "${Notes}")`);
+        await connection.query(`INSERT INTO assets (ID, Title, Contents, Location, Size, Notes) VALUES ("${ID}", "${Title}", "${Contents}", "${Location}", "${Size}", "${Notes}")`);
         return connection.end();
     } catch (error) {
         fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
