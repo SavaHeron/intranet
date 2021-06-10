@@ -37,7 +37,7 @@ async function getasset(ID) {
 async function getassets() {
     try {
         let connection = await pool.getConnection();
-        let rows = await connection.query(`SELECT * FROM assets`);
+        let rows = await connection.query(`SELECT * FROM assets ORDER BY LENGTH(ID), ID`);
         connection.end();
         return rows;
     } catch (error) {
