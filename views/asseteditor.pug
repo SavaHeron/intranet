@@ -33,7 +33,7 @@ body
             tr.assettable
               form.login-form.text-center(action=`/assetmgt/asseteditor/${asset.ID}` method=`POST`)
                 td
-                  input.form-control(type=`text` name=`ID` placeholder=asset.ID)
+                  | #{asset.ID}
                 td
                   input.form-control(type=`text` name=`Title` placeholder=asset.Title)
                 td

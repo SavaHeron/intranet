@@ -97,10 +97,10 @@ async function getSessionID(sessionID) {
     };
 };
 
-async function updateasset(ID, Title, Contents, Location, Notes) {
+async function updateasset(ID, Title, Contents, Location, Size, Notes) {
     try {
         let connection = await pool.getConnection();
-        await connection.query(`UPDATE assets SET Title = ?, Contents = ?, Location = ?, Notes = ? WHERE ID = ?`, [Title, Contents, Location, Notes, ID]);
+        await connection.query(`UPDATE assets SET Title = ?, Contents = ?, Location = ?, Size = ?, Notes = ? WHERE ID = ?`, [Title, Contents, Location, Size, Notes, ID]);
         return connection.end();
     } catch (error) {
         fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
@@ -112,10 +112,10 @@ async function updateasset(ID, Title, Contents, Location, Notes) {
     };
 };
 
-async function addasset(ID, Title, Contents, Location, Size, Notes) {
+async function addasset(Title, Contents, Location, Size, Notes) {
     try {
         let connection = await pool.getConnection();
-        await connection.query(`INSERT INTO assets (ID, Title, Contents, Location, Size, Notes) VALUES ("${ID}", "${Title}", "${Contents}", "${Location}", "${Size}", "${Notes}")`);
+        await connection.query(`INSERT INTO assets (Title, Contents, Location, Size, Notes) VALUES ("${Title}", "${Contents}", "${Location}", "${Size}", "${Notes}")`);
         return connection.end();
     } catch (error) {
         fs.appendFile(`./logs/error.log`, `${error}\n`, (error) => {
