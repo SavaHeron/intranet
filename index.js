@@ -292,6 +292,8 @@ app.post(`/assetmgt/asseteditor/*`, async function (req, res) {
                     if (!updatedrecord[key]) {
                         let jsonkey = new String(key);
                         updatedrecord[key] = result[jsonkey];
+                    } else if (updatedrecord[key] = `!EMPTY`) {
+                        updatedrecord[key] = ``;
                     };
                 });
                 await updateasset(ID, updatedrecord.Title, updatedrecord.Contents, updatedrecord.Location, updatedrecord.Size, updatedrecord.Notes);
