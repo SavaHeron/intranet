@@ -294,7 +294,7 @@ app.post(`/assetmgt/asseteditor/*`, async function (req, res) {
                         updatedrecord[key] = result[jsonkey];
                     };
                 });
-                await updateasset(ID, updatedrecord.Title, updatedrecord.Contents, updatedrecord.Location, updatedrecord.Notes);
+                await updateasset(ID, updatedrecord.Title, updatedrecord.Contents, updatedrecord.Location, updatedrecord.Location, updatedrecord.Notes);
                 return res.redirect(`/`);
             } else {
                 return res.redirect(`/error/404`);
