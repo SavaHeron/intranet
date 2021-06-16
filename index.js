@@ -6,7 +6,7 @@ const crypto = require(`crypto`);
 const bodyParser = require(`body-parser`);
 const session = require(`express-session`);
 const cookieParser = require(`cookie-parser`);
-const passwords = require(`/home/savamaxheron/intranet/passwords.json`)
+const passwords = require(`/home/savamaxheron/intranet_old/passwords.json`)
 const app = express();
 const port = 3000;
 
